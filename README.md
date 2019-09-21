@@ -1,4 +1,4 @@
-# MessagingAPI
+# MessagingAPI [![Build Status](https://travis-ci.org/thelabs-dev/MessagingAPI.svg?branch=master)](https://travis-ci.org/thelabs-dev/MessagingAPI)
 ## Descripción
 Esta herramienta esta pensada para enviar mensajes a plataformas externas, por ejemplo, el envío de mensajes a Slack, Telegram, WhatsApp.
 La herramienta se puede usar tanto desde línea de comando o importando el jar a un proyecto java.
