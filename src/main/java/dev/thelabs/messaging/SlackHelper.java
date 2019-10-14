@@ -10,6 +10,7 @@ public class SlackHelper{
             return new ResponseApi(false, 1, "El token o el canal no puede ser vacío");
             
         String url = "https://slack.com/api/chat.postMessage";
+	message = message.replace("\\n", "\n");
         String data = "token="+ Rest.encode(token)+"&channel=" + Rest.encode(channel) +"&text=" + Rest.encode(message);
         ResponseApi response = Rest.Post(proxy, url, "application/x-www-form-urlencoded",data);
         if (response.success){
