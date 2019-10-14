@@ -11,6 +11,9 @@ La herramienta se puede usar tanto desde línea de comando o importando el jar a
 
 	$ java -jar MessagingAPI.jar -platform slack -token xoxp-XXXXXXXXXXX-XXXXXXXXXXX-XXXXXXXXXXX-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -channel #varios -message "Hola Mundo!"
 
+## Tips
+- Se puede enviar \n que será interpretado como un salto de línea
+
 ## Sporte
 - Slack
 - Proxy
