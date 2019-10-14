@@ -11,7 +11,7 @@ import org.apache.commons.cli.ParseException;
 import dev.thelabs.messaging.http.Proxy;
 
 public class MessagingAPI {
-    static String VERSION = "MessagingAPI v0.1.0";
+    static String VERSION = "MessagingAPI v1.0.0";
 
     static String PROXY_USER = "proxyuser";
     static String PROXY_PASS = "proxypass";
