@@ -41,10 +41,10 @@ public class MessagingAPI {
         options.addOption(PROXY_HOST, true, "Host del proxy");
         options.addOption(PROXY_DOMI, true, "Dominio del usuario en el proxy");
 
-        options.addOption(PLATFORM, true, "Plataforma");
-        options.addOption(METHOD, true, "Método");
+        options.addOption(PLATFORM, true, "Plataforma a realizar en envío");
+        options.addOption(METHOD, true, "Método a ejecutar");
 
-        options.addOption(TOKEN, true, "Token");
+        options.addOption(TOKEN, true, "Token de la plataforma");
         options.addOption(MESSAGE, true, "Mensaje");
         options.addOption(CHANNEL, true, "Canal");
 
