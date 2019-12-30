@@ -24,6 +24,7 @@ La herramienta se puede usar tanto desde línea de comando o importando el jar a
  -proxyport <arg>     Puerto del proxy
  -proxyuser <arg>     Usuario para autenticarse en el proxy
  -token <arg>         Token de la plataforma
+ -delay <arg>         Tiempo de espera antes de mandar el mensaje
 ```
 
 ## Tips

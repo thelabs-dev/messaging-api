@@ -11,7 +11,7 @@ import org.apache.commons.cli.ParseException;
 import dev.thelabs.messaging.http.Proxy;
 
 public class MessagingAPI {
-    static String VERSION = "MessagingAPI v1.0.0";
+    static String VERSION = "MessagingAPI v1.1.0";
 
     static String PROXY_USER = "proxyuser";
     static String PROXY_PASS = "proxypass";
@@ -19,6 +19,7 @@ public class MessagingAPI {
     static String PROXY_PORT = "proxyport";
     static String PROXY_HOST = "proxyhost";
     static String PROXY_DOMI = "proxydomain";
+    static String DELAY     = "delay";
 
     static String PLATFORM   = "platform";
     static String METHOD     = "method";
@@ -40,6 +41,7 @@ public class MessagingAPI {
         options.addOption(PROXY_PORT, true, "Puerto del proxy");
         options.addOption(PROXY_HOST, true, "Host del proxy");
         options.addOption(PROXY_DOMI, true, "Dominio del usuario en el proxy");
+        options.addOption(DELAY, true, "Tiempo de demora para enviar el mensaje");
 
         options.addOption(PLATFORM, true, "Plataforma a realizar en envío");
         options.addOption(METHOD, true, "Método a ejecutar");
@@ -73,6 +75,9 @@ public class MessagingAPI {
                 if( line.hasOption(PROXY_PORT)) proxy.port = Integer.parseInt(line.getOptionValue(PROXY_PORT));
                 if( line.hasOption(PROXY_DOMI)) proxy.userdomain = line.getOptionValue(PROXY_DOMI);
             }
+            
+            int delay = 0;
+            if( line.hasOption(DELAY)) delay = Integer.parseInt(line.getOptionValue(DELAY));
 
             switch (platform) {
                 case 1: // SLACK
@@ -81,12 +86,13 @@ public class MessagingAPI {
                         help(options);
                         return;
                     }
+                   
                     String token = line.getOptionValue(TOKEN);
                     String message = line.getOptionValue(MESSAGE);
                     String channel = line.getOptionValue(CHANNEL);
                     switch (method) {
                         case 1: // SendMessage
-                            ResponseApi response = SlackHelper.sendMessage(proxy, token, channel, message);
+                            ResponseApi response = SlackHelper.sendMessage(proxy, token, channel, message, delay);
                             if(response.success){
                                 System.out.println("Se envió el mensaje por Slack al canal " + channel);
                             }else{
