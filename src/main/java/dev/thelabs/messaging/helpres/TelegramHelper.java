@@ -11,7 +11,7 @@ public class TelegramHelper {
             return new ResponseApi(false, 1, "El token o el canal no puede ser vacío");
         
         message = message.replace("\\n", "\n");
-        String url = String.format("https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s",token,Rest.encode(chat_id), Rest.encode(message));
+        String url = String.format("https://api.telegram.org/bot%s/sendMessage?chat_id=%s&parse_mode=MarkdownV2&text=%s",token,Rest.encode(chat_id), Rest.encode(message));
         if (debug) System.out.println(url);
         ResponseApi response = Rest.Get(proxy, url);
         if (response.success){
