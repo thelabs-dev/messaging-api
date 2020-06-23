@@ -16,6 +16,7 @@ import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.config.CookieSpecs;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
@@ -56,6 +57,50 @@ public class Rest{
             CloseableHttpResponse response = null;
 
             response = client.execute(httpPost);
+            
+            StatusLine sl = response.getStatusLine();
+            Boolean error = false;
+            if (!(sl.getStatusCode() >= 200 && sl.getStatusCode() < 300)){
+                //ERROR
+                error = true;
+            }
+            String result = EntityUtils.toString(response.getEntity());
+            
+            client.close();
+            return new ResponseApi(!error, (error? 2 : 0), (error? result : ""), (error? "" : result));
+        } catch (IOException e) {
+            if (MessagingAPI.debug)
+                e.printStackTrace();
+            return new ResponseApi(false, 3,  e.getMessage());
+        }
+        
+    }
+
+    public static ResponseApi Get(Proxy proxy, String url){
+        CloseableHttpClient client = null;
+        if (proxy != null){
+            HttpClientBuilder clientHelper = HttpClientBuilder.create();
+            HttpHost proxyHost = new HttpHost(proxy.hostname,proxy.port);
+            if (proxyHost != null) {
+                clientHelper.setProxy(proxyHost);
+            }
+
+            RequestConfig globalConfig = RequestConfig.custom().setCookieSpec(CookieSpecs.BROWSER_COMPATIBILITY).build();
+
+            CredentialsProvider creds = new BasicCredentialsProvider();
+            creds.setCredentials(AuthScope.ANY, new NTCredentials(proxy.username, proxy.password, getWorkstation(), proxy.userdomain));
+            clientHelper.setDefaultCredentialsProvider(creds);
+            client = clientHelper.setDefaultRequestConfig(globalConfig).build();
+        }else{
+            client = HttpClients.createDefault();
+        }
+        
+        HttpGet httpGet = new HttpGet(url);
+
+        try {
+            CloseableHttpResponse response = null;
+
+            response = client.execute(httpGet);
             
             StatusLine sl = response.getStatusLine();
             Boolean error = false;

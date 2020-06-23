@@ -11,6 +11,9 @@ La herramienta se puede usar tanto desde línea de comando o importando el jar a
 
 	$ java -jar MessagingAPI.jar -platform slack -token xoxp-XXXXXXXXXXX-XXXXXXXXXXX-XXXXXXXXXXX-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -channel #varios -message "Hola Mundo!"
 
+	$ java -jar MessagingAPI.jar -platform telegram -token XXXXXXXXXXX:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -channel IDCANAL -message "Hola Mundo!"
+
+
 ## Parámetros
 ```
  -channel <arg>       Canal
@@ -32,6 +35,7 @@ La herramienta se puede usar tanto desde línea de comando o importando el jar a
 
 ## Sporte
 - Slack
+- Telegram
 - Proxy
   
 ## Configuración
